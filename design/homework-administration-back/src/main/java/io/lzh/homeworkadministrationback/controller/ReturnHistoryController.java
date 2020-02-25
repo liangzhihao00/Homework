@@ -10,12 +10,12 @@ import java.util.List;
 @RequestMapping("/returnhistory")
 public class ReturnHistoryController {
     @GetMapping("/getListByReturnId")
-    public List<ReturnHistoryListOutDTO> getListByReturnId(@RequestParam Integer returnId){
+    public List<ReturnHistoryListOutDTO> getListByReturnId(@RequestParam Integer returnId) {
         return null;
     }
 
     @PostMapping("/create")
-    public Integer create(@RequestBody ReturnHistoryCreateInDTO returnHistoryCreateInDTO){
+    public Integer create(@RequestBody ReturnHistoryCreateInDTO returnHistoryCreateInDTO) {
         return null;
     }
 

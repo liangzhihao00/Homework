@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @GetMapping("/search")
     public PageOutDTO<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO,
-                                              @RequestParam Integer pageNum){
+                                              @RequestParam Integer pageNum) {
         return null;
     }
 
     @GetMapping("/getById")
-    public OrderShowOutDTO getById(@RequestParam Long orderId){
+    public OrderShowOutDTO getById(@RequestParam Long orderId) {
         return null;
     }
 
     @GetMapping("/getInvoiceInfo")
-    public OrderInvoiceShowOutDTO getInvoiceInfo(@RequestParam Long orderId){
+    public OrderInvoiceShowOutDTO getInvoiceInfo(@RequestParam Long orderId) {
         return null;
     }
 
     @GetMapping("/getShipInfo")
-    public OrderShipShowOutDTO getShipInfo(@RequestParam Long orderId){
+    public OrderShipShowOutDTO getShipInfo(@RequestParam Long orderId) {
         return null;
     }
 
