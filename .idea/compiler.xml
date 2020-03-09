@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="store-back" />
         <module name="administration-back" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="administration-back" target="1.8" />
+      <module name="store-back" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="administration-back" options="-parameters" />
+      <module name="store-back" options="-parameters" />
     </option>
   </component>
 </project>
