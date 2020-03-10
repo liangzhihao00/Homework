@@ -8,7 +8,7 @@
         <properties resource="generator.properties"></properties>-->
 
     <!--指定特定数据库的jdbc驱动jar包的位置 -->
-    <classPathEntry location="D:\mysql-connector-java-8.0.11\mysql-connector-java-8.0.18.jar"/>
+    <classPathEntry location="D:\mysql-connector-java-8.0.18.jar"/>
 
     <context id="jcart0224tables" targetRuntime="MyBatis3">
         <!-- optional，旨在创建class时，对注释进行控制 -->
