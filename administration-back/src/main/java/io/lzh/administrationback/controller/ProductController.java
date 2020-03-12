@@ -1,5 +1,7 @@
 package io.lzh.administrationback.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
 import io.lzh.administrationback.dto.in.ProductSearchInDTO;
 import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
@@ -22,7 +24,16 @@ public class ProductController {
      @GetMapping("/search")
      public PageOutDTO<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
                                                  @RequestParam(required = false, defaultValue = "1") Integer pageNum){
-         return null;
+
+         Page<ProductListOutDTO> search = productService.search(pageNum);
+
+         PageOutDTO<ProductListOutDTO> pageOutDTO = new PageOutDTO<>();
+         pageOutDTO.setTotal(search.getTotal());
+         pageOutDTO.setPageSize(search.getPageSize());
+         pageOutDTO.setPageNum(search.getPageNum());
+         pageOutDTO.setList(search);
+
+         return pageOutDTO;
      }
 
      @GetMapping("/getById")
@@ -40,6 +51,7 @@ public class ProductController {
      public void update(@RequestBody ProductUpdateInDTO productUpdateInDTO){
             productService.update(productUpdateInDTO);
      }
+
     @PostMapping("/delete")
     public void delete(@RequestBody Integer productId){
          productService.delete(productId);
@@ -47,5 +59,6 @@ public class ProductController {
 
     @PostMapping("/batchDelete")
     public void batchDelete(@RequestBody List<Integer> productIds){
+         productService.batchDelete(productIds);
     }
 }

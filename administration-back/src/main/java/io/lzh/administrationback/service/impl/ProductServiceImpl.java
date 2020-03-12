@@ -1,10 +1,13 @@
 package io.lzh.administrationback.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import io.lzh.administrationback.dao.ProductDetailMapper;
 import io.lzh.administrationback.dao.ProductMapper;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
 import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
+import io.lzh.administrationback.dto.out.ProductListOutDTO;
 import io.lzh.administrationback.po.Product;
 import io.lzh.administrationback.po.ProductDetail;
 import io.lzh.administrationback.service.ProductService;
@@ -103,5 +106,13 @@ public class ProductServiceImpl implements ProductService {
     public void batchDelete(List<Integer> productIds) {
         productMapper.batchDelete(productIds);
         productDetailMapper.batchDelete(productIds);
+    }
+
+    @Override
+    public Page<ProductListOutDTO> search(Integer pageNum) {
+        PageHelper.startPage(pageNum,10);
+        Page<ProductListOutDTO> search = productMapper.search(pageNum);
+
+        return search;
     }
 }

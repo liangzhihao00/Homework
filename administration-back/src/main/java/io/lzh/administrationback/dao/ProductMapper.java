@@ -1,5 +1,7 @@
 package io.lzh.administrationback.dao;
 
+import com.github.pagehelper.Page;
+import io.lzh.administrationback.dto.out.ProductListOutDTO;
 import io.lzh.administrationback.po.Product;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -23,4 +25,6 @@ public interface ProductMapper {
     //custom
 
     int batchDelete(@Param("productIds") List<Integer> productIds);
+
+    Page<ProductListOutDTO> search(Integer pageNum);
 }
