@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
 import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
 import io.lzh.administrationback.dto.out.ProductListOutDTO;
+import io.lzh.administrationback.dto.out.ProductShowOutDTO;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface ProductService {
 
     Page<ProductListOutDTO> search(Integer pageNum);
 
+    ProductShowOutDTO getById(Integer productId);
 }

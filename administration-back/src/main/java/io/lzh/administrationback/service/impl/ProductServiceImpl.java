@@ -8,6 +8,7 @@ import io.lzh.administrationback.dao.ProductMapper;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
 import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
 import io.lzh.administrationback.dto.out.ProductListOutDTO;
+import io.lzh.administrationback.dto.out.ProductShowOutDTO;
 import io.lzh.administrationback.po.Product;
 import io.lzh.administrationback.po.ProductDetail;
 import io.lzh.administrationback.service.ProductService;
@@ -112,7 +113,34 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductListOutDTO> search(Integer pageNum) {
         PageHelper.startPage(pageNum,10);
         Page<ProductListOutDTO> search = productMapper.search(pageNum);
-
         return search;
+    }
+
+    @Override
+    public ProductShowOutDTO getById(Integer productId) {
+
+        Product product = productMapper.selectByPrimaryKey(productId);
+        ProductDetail productDetail = productDetailMapper.selectByPrimaryKey(productId);
+
+        ProductShowOutDTO productShowOutDTO = new ProductShowOutDTO();
+        productShowOutDTO.setProductId(productId);
+        productShowOutDTO.setProductCode(product.getProductCode());
+        productShowOutDTO.setProductName(product.getProductName());
+        productShowOutDTO.setPrice(product.getPrice());
+        productShowOutDTO.setDiscount(product.getDiscount());
+        productShowOutDTO.setStatus(product.getStatus());
+        productShowOutDTO.setMainPicUrl(product.getMainPicUrl());
+        productShowOutDTO.setRewordPoints(product.getRewordPoints());
+        productShowOutDTO.setSortOrder(product.getSortOrder());
+        productShowOutDTO.setStockQuantity(product.getStockQuantity());
+
+        //从detail
+        productShowOutDTO.setDescription(productDetail.getDescription());
+
+        String otherPicUrlsJson = productDetail.getOtherPicUrls();
+        List<String> otherPicUrls = JSON.parseArray(otherPicUrlsJson, String.class);
+        productShowOutDTO.setOtherPicUrls(otherPicUrls);
+
+        return productShowOutDTO;
     }
 }
