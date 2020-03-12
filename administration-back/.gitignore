@@ -27,5 +27,6 @@ target/
 /.nb-gradle/
 build/
 
-### VS Code ###
+### VS Code 忽略掉一些东西###
 .vscode/
+www/
