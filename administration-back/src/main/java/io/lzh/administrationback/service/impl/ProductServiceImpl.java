@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import io.lzh.administrationback.dao.ProductDetailMapper;
 import io.lzh.administrationback.dao.ProductMapper;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
+import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
 import io.lzh.administrationback.po.Product;
 import io.lzh.administrationback.po.ProductDetail;
 import io.lzh.administrationback.service.ProductService;
@@ -56,5 +57,37 @@ public class ProductServiceImpl implements ProductService {
         productDetailMapper.insertSelective(productDetail);
 
         return productId;
+    }
+
+    @Override
+    @Transactional//事务（同时成功同时失败）
+    public void update(ProductUpdateInDTO productUpdateInDTO) {
+        Product product = new Product();
+        product.setProductId(productUpdateInDTO.getProductId());
+        product.setProductName(productUpdateInDTO.getProductName());
+        product.setPrice(productUpdateInDTO.getPrice());
+        product.setDiscount(productUpdateInDTO.getDiscount());
+        product.setStockQuantity(productUpdateInDTO.getStockQuantity());
+        product.setMainPicUrl(productUpdateInDTO.getMainPicUrl());
+        product.setStatus(productUpdateInDTO.getStatus());
+        product.setRewordPoints(productUpdateInDTO.getRewordPoints());
+        product.setSortOrder(productUpdateInDTO.getSortOrder());
+        String description = productUpdateInDTO.getDescription();
+        //截取
+        String substring = description.substring(0, Math.min(100, description.length()));
+        product.setProductAbstract(substring);
+        productMapper.updateByPrimaryKeySelective(product);
+
+        //获取productid
+        Integer productId = product.getProductId();
+        //副表id依赖于主表的iid
+        ProductDetail productDetail = new ProductDetail();
+        productDetail.setProductId(productId);
+        productDetail.setDescription(productUpdateInDTO.getDescription());
+
+        List<String> otherPicUrls = productUpdateInDTO.getOtherPicUrls();
+        //把数组变成json串
+        productDetail.setOtherPicUrls(JSON.toJSONString(otherPicUrls));
+        productDetailMapper.updateByPrimaryKeySelective(productDetail);
     }
 }
