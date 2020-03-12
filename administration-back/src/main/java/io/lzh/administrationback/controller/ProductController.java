@@ -1,7 +1,6 @@
 package io.lzh.administrationback.controller;
 
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 import io.lzh.administrationback.dto.in.ProductCreateInDTO;
 import io.lzh.administrationback.dto.in.ProductSearchInDTO;
 import io.lzh.administrationback.dto.in.ProductUpdateInDTO;
