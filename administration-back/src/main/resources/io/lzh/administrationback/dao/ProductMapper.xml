@@ -38,7 +38,7 @@
       #{stockQuantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{mainPicUrl,jdbcType=VARCHAR}, 
       #{rewordPoints,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="io.lzh.administrationback.po.Product">
+  <insert id="insertSelective" parameterType="io.lzh.administrationback.po.Product" useGeneratedKeys="true" keyProperty="productId">
     insert into jcart_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="productId != null">
