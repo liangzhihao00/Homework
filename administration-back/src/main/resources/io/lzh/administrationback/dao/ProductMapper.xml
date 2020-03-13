@@ -15,7 +15,7 @@
     <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
   </resultMap>
   <!--重新自己定义一个映射-->
-  <resultMap id="ProductListOutDTO" type="io.lzh.administrationback.po.ProductListOutDTO">
+  <resultMap id="ProductListOutDTO" type="io.lzh.administrationback.dto.out.ProductListOutDTO">
     <id column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="product_code" jdbcType="VARCHAR" property="productCode" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
@@ -176,16 +176,16 @@
 
   <!--custom-->
 
-  <delete id="batchDelete" >
+  <delete id="batchDelete">
     delete from jcart_product
     where product_id in
     <foreach item="item" index="index" collection="productIds"
              open="(" separator="," close=")">
-            #{item}
+      #{item}
     </foreach>
   </delete>
 
-  <select id="search"  resultMap="ProductListOutDTO">
+  <select id="search" resultMap="ProductListOutDTO">
     select
     <include refid="Base_Column_List" />
     from jcart_product

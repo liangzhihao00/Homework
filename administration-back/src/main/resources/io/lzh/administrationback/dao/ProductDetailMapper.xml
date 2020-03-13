@@ -83,7 +83,7 @@
 
   <!--custom-->
 
-  <delete id="batchDelete" >
+  <delete id="batchDelete">
     delete from jcart_product_detail
     where product_id in
     <foreach item="item" index="index" collection="productIds"
