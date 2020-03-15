@@ -13,19 +13,23 @@
     <div id="app">
 
         <el-table :data="pageInfo" style="width: 100%">
-            <el-table-column prop="date" label="主图" width="180">
+            <el-table-column prop="mainPicUrl" label="主图" width="180">
             </el-table-column>
-            <el-table-column prop="name" label="商品代码" width="180">
+            <el-table-column prop="productCode" label="商品代码" width="180">
             </el-table-column>
-            <el-table-column prop="address" label="价格">
+            <el-table-column prop="price" label="价格">
             </el-table-column>
-            <el-table-column prop="date" label="打折" width="180">
+            <el-table-column prop="discount" label="打折" width="180">
             </el-table-column>
-            <el-table-column prop="name" label="库存" width="180">
+            <el-table-column prop="stockQuantity" label="库存" width="180">
             </el-table-column>
-            <el-table-column prop="address" label="状态">
+            <el-table-column prop="status" label="状态">
             </el-table-column>
         </el-table>
+
+        <el-pagination background layout="prev, pager, next" :total="pageInfo.total" @current-change="handleCurrentChange">
+        </el-pagination>
+
 
     </div>
 

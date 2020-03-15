@@ -19,6 +19,11 @@ var app = new Vue({
               .catch(function (error) {
                 console.log(error);
               });
+        },
+        handleCurrentChange(val){
+            console.log("page change val是页码");
+            this.pageNum=val;
+            this.searchProduct();
         }
     },
     mounted(){
