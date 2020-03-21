@@ -40,10 +40,9 @@ public class ProductServiceImpl implements ProductService {
         product.setStatus(productCreateInDTO.getStatus());
         product.setRewordPoints(productCreateInDTO.getRewordPoints());
         product.setSortOrder(productCreateInDTO.getSortOrder());
-        String description = productCreateInDTO.getDescription();
         //截取
-        String substring = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(substring);
+       // String substring = description.substring(0, Math.min(100, description.length()));
+        product.setProductAbstract(productCreateInDTO.getProductAbstract());
 
         productMapper.insertSelective(product);
 
@@ -76,10 +75,9 @@ public class ProductServiceImpl implements ProductService {
         product.setStatus(productUpdateInDTO.getStatus());
         product.setRewordPoints(productUpdateInDTO.getRewordPoints());
         product.setSortOrder(productUpdateInDTO.getSortOrder());
-        String description = productUpdateInDTO.getDescription();
         //截取
-        String substring = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(substring);
+        //String substring = description.substring(0, Math.min(100, description.length()));
+        product.setProductAbstract(productUpdateInDTO.getProductAbstract());
         productMapper.updateByPrimaryKeySelective(product);
 
         //获取productid
@@ -133,6 +131,7 @@ public class ProductServiceImpl implements ProductService {
         productShowOutDTO.setRewordPoints(product.getRewordPoints());
         productShowOutDTO.setSortOrder(product.getSortOrder());
         productShowOutDTO.setStockQuantity(product.getStockQuantity());
+        productShowOutDTO.setProductAbstract(product.getProductAbstract());
 
         //从detail
         productShowOutDTO.setDescription(productDetail.getDescription());

@@ -49,6 +49,7 @@ var app = new Vue({
         },
         handleCreateClick(){
             console.log("create click");
+            this.description = tinyMCE.activeEditor.getContent();
             this.createProduct();
         },
         handleOnMainChange(val) {
@@ -110,5 +111,11 @@ var app = new Vue({
                     });
             });
         },
+    },
+    mounted() {
+        console.log('view mounted');
+        tinymce.init({
+            selector: '#mytextarea'
+        });
     }
 })
