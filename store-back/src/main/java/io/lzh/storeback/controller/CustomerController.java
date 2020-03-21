@@ -47,4 +47,5 @@ public class CustomerController {
     public void resetPwd(@RequestBody CustomerResetPwdInDTO customerResetPwdInDTO){
 
     }
+    //jwt通行证  无状态的登入方式
 }
